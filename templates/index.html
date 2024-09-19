@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Listings</title>
+    <script>
+        // Function to display a pop-up message
+        function showMessage() {
+            // Get query parameters from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+
+            // Check if the 'message' query parameter is 'success'
+            if (message === 'success') {
+                alert("Service added successfully!");
+            }
+        }
+
+        // Call the showMessage function when the page loads
+        window.onload = showMessage;
+    </script>
+</head>
+<body>
+    <h1>Available Services</h1>
+    <ul>
+        {% for service in services %}
+            <li>
+                <strong>{{ service.title }}</strong><br>
+                Description: {{ service.description }}<br>
+                Location: {{ service.location }}<br>
+                Contact: {{ service.contact }}
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+
+    <a href="/login">Login</a> | <a href="/register">Register</a> | <a href="/add_service">Add Service</a>
+</body>
+</html>
